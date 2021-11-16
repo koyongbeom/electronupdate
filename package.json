@@ -1,6 +1,6 @@
 {
   "name": "electronupdatepractice23",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -38,7 +38,7 @@
     "react-eject": "react-scripts eject",
     "start": "concurrently \"cross-env NODE_ENV=development BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "build": "yarn react-build && electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always"
+    "release": "yarn react-build && electron-builder --win --publish=always"
   },
   "eslintConfig": {
     "extends": [
