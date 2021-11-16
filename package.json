@@ -8,19 +8,37 @@
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-updater": "^4.3.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/koyongbeom/electronupdate.git"
+  },
+  "description": "electron test app",
+  "author": "cpro95",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "build": {
+    "productName": "electron-update-test-app",
+    "asar": true,
+    "appId": "org.cpro95.electron-test-app"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject",
+    "start": "concurrently \"cross-env NODE_ENV=development BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "yarn react-build && electron-builder",
+    "release": "yarn react-build && electron-builder --publish=always"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +57,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "cross-env": "^7.0.3",
+    "electron": "^15.3.1",
+    "electron-builder": "^22.13.1",
+    "wait-on": "^6.0.0"
   }
 }
